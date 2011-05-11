@@ -1,0 +1,16 @@
+{
+  "author": "Andy Lindeman <alindeman@gmail.com> (http://andylindeman.com/)",
+  "name": "gallery_bot",
+  "description": "Bot for #gallery on irc.freeenode.net",
+  "version": "0.0.0",
+  "homepage": "http://github.com/alindeman/gallery_bot",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alindeman/gallery_bot.git"
+  },
+  "engines": {
+    "node": "~v0.4.7"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
