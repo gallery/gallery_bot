@@ -8,3 +8,4 @@ irc_client = new irc.Client(options.server, options.nickName, options)
 
 // TODO: Autoload everything in modules/ directory?
 require('./modules/notes.js')
+require('./modules/git.js')
