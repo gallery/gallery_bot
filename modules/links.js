@@ -11,3 +11,10 @@ irc_client.addListener('message', function(from, to, text) {
     irc_client.say_in_response(from, to, 'https://github.com/gallery/gallery3/blob/master/' + matches[1])
   }
 })
+
+// ~trac or ~ticket
+irc_client.addListener('message', function(from, to, text) {
+  if (matches = text.match(/^~(?:trac|ticket) (\S+)/i)) {
+    irc_client.say_in_response(from, to, 'https://sourceforge.net/apps/trac/gallery/ticket/' + matches[1])
+  }
+})
