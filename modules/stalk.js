@@ -1,6 +1,6 @@
 // ~stalk <user>
 irc_client.addListener('message', function(from, to, text) {
-  if (matches = text.match(/^~stalk (\S+)/)) {
+  if (matches = text.match(/^~stalk (\S+)/i)) {
     redis_client.rpush('stalks:' + matches[1].toLowerCase(), from, function(err, res) {
       irc_client.say(to, 'OK, I will notify you when ' + matches[1] + ' next speaks')
     })
@@ -22,7 +22,7 @@ function notify_stalks(channel, nick) {
 
 irc_client.addListener('join', notify_stalks);
 irc_client.addListener('message', function(from, to, text) {
-  if (to.match(/^#/)) {
+  if (to.is_channel()) {
     notify_stalks(to, from);
   }
 });
