@@ -1,5 +1,6 @@
 irc = require('irc');
 redis = require('redis');
+elasticsearch = require('elasticsearch');
 
 require('./config.js');
 
