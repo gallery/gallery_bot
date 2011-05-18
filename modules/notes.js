@@ -21,6 +21,14 @@ function num_notes_available(nick, callback) {
   redis_client.llen('notes:' + nick.toLowerCase(), function(err, obj) { callback(obj) })
 }
 
+function notify_user_of_available_notes(nick) {
+  num_notes_available(nick, function(num_notes) {
+    if (num_notes > 0) {
+      irc_client.send('NOTICE', nick, 'Notes are available for you. Send ~list-notes in the channel or via /msg to view them')
+    }
+  })
+}
+
 // note to <nick>: ...
 irc_client.addListener('message', function(from, to, text) {
   if (matches = text.match(/^note to (\S+): (.*)$/i)) {
@@ -42,9 +50,10 @@ irc_client.addListener('message', function(from, to, text) {
 
 // notification of available notes when user joins channel
 irc_client.addListener('join', function(channel, nick) {
-  num_notes_available(nick, function(num_notes) {
-    if (num_notes > 0) {
-      irc_client.send('NOTICE', nick, 'Notes are available for you. Send ~list-notes in the channel or via /msg to view them')
-    }
-  })
+  notify_user_of_available_notes(nick)
+})
+
+// notification of available notes when user changes nick
+irc_client.addListener('nick', function(oldnick, newnick, channels) {
+  notify_user_of_available_notes(newnick)
 })
