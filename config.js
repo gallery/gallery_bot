@@ -1,6 +1,6 @@
 options = {
   server      : 'chat.freenode.net',
-  nickName    : 'gallery-bot-node',
+  nickName    : 'gallery_bot',
   userName    : 'gbot',
   realName    : 'Bot for #gallery',
   channels    : ['#gallery-test'],
