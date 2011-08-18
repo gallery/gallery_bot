@@ -1,4 +1,5 @@
 irc_client.addListener('message', function(from, to, text) {
+  return; // Temporarily disable
   if (text.match(/^~fortune/i)) {
     var child_process = require('child_process');
 
